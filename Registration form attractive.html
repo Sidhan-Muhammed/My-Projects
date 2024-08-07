@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+
+  <style type="text/css">
+    body{
+      background-color: lightblue;
+    }
+    #form1{
+      width: 300px;
+      height: 100%;
+      background-color: white;
+      border-radius: 1rem;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    #row{
+      margin: 20px 0 15px 20px;
+
+    }
+    input,label{
+      display: block;
+    }
+    input{
+      width: 250px;
+      height: 30px;
+      margin-top: 5px;
+      padding: 0 10px;
+      border: none;
+      box-shadow: 1px 1px darkcyan;
+    }
+    input:hover{
+      box-shadow: 2px 2px darkcyan;
+    }
+    header{
+      text-align: center;
+      margin-top: 50px;
+    }
+    h3{
+      font-size: 30px;
+      color: white;
+    }
+    input[type="submit"]{
+      background-color: lightskyblue;
+      border-radius: 1rem;
+      margin-top: 40px;
+      font-size: 15px;
+      margin-left: 10px;
+    }
+    input[type="submit"]:hover{
+      background-color: lightblue;
+    }
+    .err{
+      color: red;
+      margin-top: 0px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h3>Registration form</h3>
+  </header>
+
+  <form id="form1" onsubmit="formSubmit(event)">
+    <div id="row">
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" placeholder="enter first name" name="">
+    <p class="err" id="fnameError"></p>
+  </div>
+  <div id="row">
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" placeholder="enter last name" name="">
+    <p class="err" id="lnameError"></p>
+  </div>
+  <div id="row">
+    <label for="mail">Email</label>
+    <input type="email" id="mail" placeholder="Enter email" name="">
+    <p class="err" id="mailError"></p>
+  </div>
+  <div id="row">
+    <label for="pass">Password</label>
+    <input type="password" id="pass" placeholder="Enter password" name="">
+    <p class="err" id="passwordError"></p>
+  </div>
+
+  <div id="row">
+    <input type="submit" name="">
+  </div>
+  </form>
+
+  <script type="text/javascript">
+    function formSubmit(e){
+      e.preventDefault();
+
+      var validFname = /^([a-zA-z]{3,10})+$/;
+      var validLname = /^([a-zA-Z]{3,10})+$/;
+      var validMail = /^\S+@\S+[.]+\S+$/;
+      var validPass = /^([a-zA-Z0-9]{7,10})+$/;
+
+      var fnameInForm = document.getElementById('fname').value;
+      var lnameInForm = document.getElementById('lname').value;
+      var mailInForm = document.getElementById('mail').value.toLowerCase().trim();
+      var passwordInForm = document.getElementById('pass').value;
+
+      if(!validFname.test(fnameInForm)){
+        document.getElementById('fnameError').innerHTML =
+        "Please enter a valid first name";
+        document.getElementById('fname').focus();
+      }
+
+    if (!validLname.test(lnameInForm)) {
+      document.getElementById('lnameError').innerHTML = 
+      "please enter a valid last name";
+      document.getElementById('lname').focus();
+    }
+
+    if (!validMail.test(mailInForm)) {
+      document.getElementById('mailError').innerHTML = 
+      "please enter a valid mail address";
+      document.getElementById('mail').focus();
+    }
+
+    if (!validPass.trim(passwordInForm)) {
+      document.getElementById('passError').innerHTML =
+      "please enter a valid password";
+      document.getElementById('pass').focus();
+    }
+  }
+  </script>
+</body>
+</html>
